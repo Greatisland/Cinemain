@@ -22,40 +22,26 @@ const DailyBoxOfficeContainer = styled.div`
   
 `
 
-
 const DailyBoxOffice = () => {
 
   //필요한 정보를 state로부터 가져옴. 
-  // const { dailyBoxOfficeList } = useSelector((state) => state.moviesData.boxOfficeResult)
-  // const [movieImages, setMovieImages] = useState([])
-
-  // //이미지만 가져올 api로부터 state에서 불러온 영화들의 이미지를 요청함
-  // const getMoviesImg = async () => {
-  //   const imgRequests = dailyBoxOfficeList.map((value) => (fetch(`${process.env.SEARCH_MOVIE}?api_key=${process.env.TMDB_KEY}&query=${encodeURIComponent(value.movieNm)}&language=ko&include_adult=true&page=1`)))
-  //   const imgResponses = await Promise.all(imgRequests)
-  //   const jsonImg = await Promise.all(imgResponses.map((imgResponse) => imgResponse.json()))
-  //   console.log(jsonImg)
-  //   setMovieImages(jsonImg)
-  // }
-
-  // useEffect(() => {
-  //   getMoviesImg()
-  // },[dailyBoxOfficeList])
-
-
+  const { dailyBoxOffice } = useSelector(state => state?.moviesData?.moviesData)
+  console.log(dailyBoxOffice)
   return (
     <DailyBoxOfficeContainer>
-      {/* <h3>오늘의 박스 오피스</h3>
+      <h3>오늘의 박스 오피스</h3>
       <ul>
-      {dailyBoxOfficeList.map((movie, index: number) => (
-          <li key={movie.rank}>
-            <Link to='../pages/Detail'>
-            {movieImages[index]?.results[0]?.poster_path && <img src={`https://image.tmdb.org/t/p/w342/${movieImages[index]?.results[0]?.poster_path}`} />}
-            <span>{movie.movieNm}</span>
-            </Link>
-          </li>
-        ))}
-      </ul> */}
+      {dailyBoxOffice?.map((movie) => (
+        <li key={movie?.id}>
+          <Link to='../pages/Datail'>
+            {movie?.poster_path&&<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />}
+            <p>{movie?.title}</p>
+            <span>{movie?.popularity}</span>
+          </Link>
+        </li>
+      ))}
+      </ul>
+
     </DailyBoxOfficeContainer>
   )
 }

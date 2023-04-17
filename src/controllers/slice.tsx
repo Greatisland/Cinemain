@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import getMoviesConversion from "./getMoviesConversion";
 
 //어제 날짜 계산
-const dailyDate = () => {
+const yesterDayDate = () => {
   const date = new Date()
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2,'0')
@@ -10,20 +11,10 @@ const dailyDate = () => {
   return `${year}${month}${day}`
 }
 
-const getMoviesConversion = async (movieList) => {
-  const requests = movieList.map((movie) => (fetch(`${process.env.SEARCH_MOVIE}?api_key=${process.env.TMDB_KEY}&query=${encodeURIComponent(movie.movieNm)}&language=ko&include_adult=true&page=1`)))
-  const responses = await Promise.all(requests)
-  const jsonData = await Promise.all(responses.map((response) => response.json()))
-  const data = []
-
-  for(let dataItem of jsonData){data.push(dataItem?.results[0])}
-  const dataObj = {result: data}
-  
-  return dataObj
-}
-
 //fetch 요청 urls
 const urls = [
+  `${process.env.DAILY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${yesterDayDate()}&itemPerPage=10`,
+  `${process.env.WEEKLY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${yesterDayDate()}&itemPerPage=10`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=1`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=2`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=3`,
@@ -37,13 +28,20 @@ export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async 
   //여러 개의 fetch요청을 동시에 수행하기 위해 promise.all 사용
   const responses = await Promise.all(fetchRequests)
   const jsonData = await Promise.all(responses.map((response) => response.json()))
+  let data = [...jsonData]
   console.log(jsonData)
-  return jsonData
+  data[0] = await getMoviesConversion(jsonData[0]?.boxOfficeResult?.dailyBoxOfficeList)
+  data[1] = await getMoviesConversion(jsonData[1]?.boxOfficeResult?.weeklyBoxOfficeList)
+  return data
 })
 
 //state 초기 값
 const initialState = {
-  moviesData: []
+  moviesData: {
+    dailyBoxOffice : [],
+    weeklyBoxOffice: [],
+    allMovies: []
+  }
 }
 
 
@@ -56,16 +54,29 @@ const moviesDataSlice = createSlice({
     .addCase(getMoviesData.pending, (state) => {
       //fetch되기 전 수행할 action 작성
     })
+
     .addCase(getMoviesData.fulfilled, (state, action) => {
       //fetch성공 후 수행할 action 작성
-      const merge = action.payload.reduce((acc,pages) => {
-        acc = [...acc, ...pages?.results]
-      }, [])
-      console.log(merge)
 
+      //boxOffice만 따로 별개의 state로 관리
+      const dailyUpdate = action.payload[0]?.results
+      const weeklyUpdate = action.payload[1]?.results
+
+      state.moviesData.dailyBoxOffice = dailyUpdate
+      state.moviesData.weeklyBoxOffice = weeklyUpdate
+
+      console.log(state.moviesData.dailyBoxOffice)
+
+      //fetch해온 모든 movie data를 하나의 배열로 합침
+      const mergeData = action.payload.reduce((acc, movieList) => {
+        return [...acc, ...movieList.results]
+      }, [])
+      state.moviesData.allMovies = mergeData
     })
+
     .addCase(getMoviesData.rejected, (state) => {
       //fetch 실패 시 수행할 action 작성
+      console.log('실패 ㅠㅠ')
     })
   },
 })
