@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import getMoviesConversion from "./getMoviesConversion";
 
 //어제 날짜 계산
 const dailyDate = () => {
@@ -11,11 +10,20 @@ const dailyDate = () => {
   return `${year}${month}${day}`
 }
 
+const getMoviesConversion = async (movieList) => {
+  const requests = movieList.map((movie) => (fetch(`${process.env.SEARCH_MOVIE}?api_key=${process.env.TMDB_KEY}&query=${encodeURIComponent(movie.movieNm)}&language=ko&include_adult=true&page=1`)))
+  const responses = await Promise.all(requests)
+  const jsonData = await Promise.all(responses.map((response) => response.json()))
+  const data = []
+
+  for(let dataItem of jsonData){data.push(dataItem?.results[0])}
+  const dataObj = {result: data}
+  
+  return dataObj
+}
 
 //fetch 요청 urls
 const urls = [
-  `${process.env.DAILY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${dailyDate()}&itemPerPage=10`,
-  `${process.env.WEEKLY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${dailyDate()}&itemPerPage=10`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=1`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=2`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=3`,
@@ -35,10 +43,9 @@ export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async 
 
 //state 초기 값
 const initialState = {
-  popular: {},
-  daliyBoxOffice: {},
-  weekleyBoxOffice: {}
+  moviesData: []
 }
+
 
 const moviesDataSlice = createSlice({
   name: "moviesData",
@@ -51,16 +58,11 @@ const moviesDataSlice = createSlice({
     })
     .addCase(getMoviesData.fulfilled, (state, action) => {
       //fetch성공 후 수행할 action 작성
+      const merge = action.payload.reduce((acc,pages) => {
+        acc = [...acc, ...pages?.results]
+      }, [])
+      console.log(merge)
 
-      for(let i=0; i<2; i++){
-        const movieList = action.payload[i]?.boxOfficeResult?.dailyBoxOfficeList
-        const conversion = getMoviesConversion(movieList)
-        if(i===0){
-          state.daliyBoxOffice = conversion
-        }else{
-          
-        }
-      }
     })
     .addCase(getMoviesData.rejected, (state) => {
       //fetch 실패 시 수행할 action 작성
