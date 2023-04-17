@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { getTodos } from '../components/logic/slice'
 const Main = () => {
-  // const dispatch = useDispatch()
-  const { dailyBoxOfficeList } = useSelector((state) => state.todoList)
 
+  //필요한 정보를 state로부터 가져옴. 
+  const { dailyBoxOfficeList } = useSelector((state) => state.moviesData.boxOfficeResult)
   return (
     <>
      <p>몰?루</p>

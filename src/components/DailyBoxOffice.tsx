@@ -1,40 +1,33 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { getTodos } from './logic/slice'
 const DailyBoxOffice = () => {
 
-  //오늘 날짜 구하기
-  // const dailyDate = () => {
-  //   const date = new Date()
-  //   const year = date.getFullYear()
-  //   const month = String(date.getMonth() + 1).padStart(2,'0')
-  //   const day = String(date.getDay()).padStart(2,'0')
-  //   return `${year}${month}${day}`
-  // }
+  //필요한 정보를 state로부터 가져옴. 
+  const { dailyBoxOfficeList } = useSelector((state) => state.moviesData.boxOfficeResult)
+  const [movieImages, setMovieImages] = useState([])
 
-  //박스오피스 api 요청
-  // const getData = async () => {
-  //   const data = await fetch(`${process.env.DAILY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${dailyDate()}`)
-  //   const json = await data.json()
-  //   console.log(json)
-  // }
+  //이미지만 가져올 api로부터 state에서 불러온 영화들의 이미지를 요청함
+  const getMoviesImg = async () => {
+    const imgRequests = dailyBoxOfficeList.map((value) => (fetch(`${process.env.SEARCH_MOVIE}?api_key=${process.env.TMDB_KEY}&query=${encodeURIComponent(value.movieNm)}&language=ko&include_adult=true&page=1`)))
+    const imgResponses = await Promise.all(imgRequests)
+    const jsonImg = await Promise.all(imgResponses.map((imgResponse) => imgResponse.json()))
+    setMovieImages(jsonImg)
+  }
+
+  useEffect(() => {
+    getMoviesImg()
+  },[dailyBoxOfficeList])
 
 
-  // useEffect(() => {
-  //   dispatch(fetchApiAsync())
-  // }, [dispatch])
-  // const dispatch = useDispatch()
-  const { dailyBoxOfficeList } = useSelector((state) => state.todoList)
-
-  // useEffect(() => {
-  //   dispatch(getTodos())
-  // },[dispatch])
   return (
     <>
      <div>ㅏ알아보장</div>
      <ul>
-     {dailyBoxOfficeList.map((movie) => (
-          <li key={movie.rank}>{movie.movieNm}</li>
+     {dailyBoxOfficeList.map((movie, index) => (
+          <li key={movie.rank}>
+            {movieImages[index]?.results[0]?.poster_path && <img src={`https://image.tmdb.org/t/p/w500/${movieImages[index].results[0].poster_path}`} />}
+            {movie.movieNm}
+          </li>
         ))}
      </ul>
     </>
