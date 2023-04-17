@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
   a {text-decoration: none;}
   ul, ol {list-style: none;}
   html, body {font-family: 'Noto Sans KR', sans-serif;}
+  body {padding: 0 50px; box-sizing: border-box;}
 `
 
 export default GlobalStyle

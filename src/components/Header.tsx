@@ -3,12 +3,13 @@ import styled from "styled-components"
 
 const HeaderContainer = styled.div`
   height: 70px;
-  padding: 0 50px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   h1 {
     line-height: 70px;
+    color: #d60b0b;
+    font-size: 3em;
   }
   form {
     height: 70px;
