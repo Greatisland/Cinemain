@@ -29,7 +29,8 @@ export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async 
   const responses = await Promise.all(fetchRequests)
   const jsonData = await Promise.all(responses.map((response) => response.json()))
   let data = [...jsonData]
-  console.log(jsonData)
+
+  //다른 api로부터 받아온 json data는 getMoviesConversion를 통해 같은 형식으로 변환
   data[0] = await getMoviesConversion(jsonData[0]?.boxOfficeResult?.dailyBoxOfficeList)
   data[1] = await getMoviesConversion(jsonData[1]?.boxOfficeResult?.weeklyBoxOfficeList)
   return data
@@ -53,6 +54,7 @@ const moviesDataSlice = createSlice({
     builder
     .addCase(getMoviesData.pending, (state) => {
       //fetch되기 전 수행할 action 작성
+      console.log('로딩중..')
     })
 
     .addCase(getMoviesData.fulfilled, (state, action) => {
@@ -67,7 +69,7 @@ const moviesDataSlice = createSlice({
 
       console.log(state.moviesData.dailyBoxOffice)
 
-      //fetch해온 모든 movie data를 하나의 배열로 합침
+      //각각 fetch해온 모든 movie data를 같은 data 형식의 하나의 배열로 합침
       const mergeData = action.payload.reduce((acc, movieList) => {
         return [...acc, ...movieList.results]
       }, [])
