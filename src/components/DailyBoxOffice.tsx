@@ -26,7 +26,7 @@ const DailyBoxOffice = () => {
 
   //필요한 정보를 state로부터 가져옴. 
   const { dailyBoxOffice } = useSelector(state => state?.moviesData?.moviesData)
-  console.log(dailyBoxOffice)
+  
   return (
     <DailyBoxOfficeContainer>
       <h3>오늘의 박스 오피스</h3>

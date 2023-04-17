@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import getMoviesConversion from "./getMoviesConversion";
 
 //어제 날짜 계산
-const yesterDayDate = () => {
+const yesterDayDate = ():string => {
   const date = new Date()
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2,'0')
@@ -11,17 +11,25 @@ const yesterDayDate = () => {
   return `${year}${month}${day}`
 }
 
-//fetch 요청 urls
+//api urls
 const urls = [
+  //한국 영화 konfig api (한국의 박스오피스 불러오는 용도로 사용)
   `${process.env.DAILY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${yesterDayDate()}&itemPerPage=10`,
   `${process.env.WEEKLY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${yesterDayDate()}&itemPerPage=10`,
-  `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=1`,
-  `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=2`,
-  `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=3`,
-  `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=4`
+
+  //외국 영화 tmdb api (메인 api로 사용)
+  `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=`,
 ]
 
-const fetchRequests = urls.map((url) => fetch(url))
+//fetch요청 작성.
+const fetchRequests = [fetch(urls[0]), fetch(urls[1])]
+
+//tmdb api의 불러오고 싶은 page 숫자만큼 반복문 설정.
+for(let i=0; i<10; i++){
+  fetchRequests.push(
+    fetch(urls[2] + String(i+1))
+  )
+}
 
 //비동기 실행 thunk
 export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async () => {
@@ -30,14 +38,24 @@ export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async 
   const jsonData = await Promise.all(responses.map((response) => response.json()))
   let data = [...jsonData]
 
-  //다른 api로부터 받아온 json data는 getMoviesConversion를 통해 같은 형식으로 변환
+  //konfig api의 json data는 getMoviesConversion를 통해 tmdb api와 같은 형식으로 변환
   data[0] = await getMoviesConversion(jsonData[0]?.boxOfficeResult?.dailyBoxOfficeList)
   data[1] = await getMoviesConversion(jsonData[1]?.boxOfficeResult?.weeklyBoxOfficeList)
   return data
 })
 
 //state 초기 값
-const initialState = {
+interface MoviesData {
+  dailyBoxOffice: []
+  weeklyBoxOffice: []
+  allMovies: []
+  }
+  
+interface InitialState {
+  moviesData: MoviesData
+}
+
+const initialState: InitialState = {
   moviesData: {
     dailyBoxOffice : [],
     weeklyBoxOffice: [],
@@ -66,8 +84,6 @@ const moviesDataSlice = createSlice({
 
       state.moviesData.dailyBoxOffice = dailyUpdate
       state.moviesData.weeklyBoxOffice = weeklyUpdate
-
-      console.log(state.moviesData.dailyBoxOffice)
 
       //각각 fetch해온 모든 movie data를 같은 data 형식의 하나의 배열로 합침
       const mergeData = action.payload.reduce((acc, movieList) => {
