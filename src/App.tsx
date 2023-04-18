@@ -4,10 +4,10 @@ import Main from "./pages/Main";
 import Detail from "./pages/Detail"
 import GlobalStyle from "./styles/GlobalStyle"
 import { getMoviesData } from "./controllers/slice";
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from "./controllers/hooks";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   //app이 처음 렌더링 될 때 getMoviesData를 실행하여 모든 필요한 fetch요청을 수행한 후 state에 담음.
   useEffect(() => {

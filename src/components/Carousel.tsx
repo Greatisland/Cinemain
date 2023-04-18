@@ -52,13 +52,13 @@ const Carousel = () => {
   //매번 다른 carousel이 나오도록 랜덤 난수화 적용
   let randomNumber = Math.floor(Math.random() * 10) - 1
 
-  const { weeklyBoxOffice } = useSelector(state => state?.moviesData?.moviesData)
+  const { dailyBoxOffice } = useSelector(state => state?.moviesData?.moviesData)
 
   return (
-    <CarouselContainer background={weeklyBoxOffice[randomNumber]?.backdrop_path}>
-      <h3>{weeklyBoxOffice?.[randomNumber]?.title}</h3>
+    <CarouselContainer background={dailyBoxOffice[randomNumber]?.backdrop_path}>
+      <h3>{dailyBoxOffice?.[randomNumber]?.title}</h3>
       <Link to='../pages/Detail'>바로가기</Link>
-      <p>{weeklyBoxOffice?.[randomNumber]?.overview}</p>
+      <p>{dailyBoxOffice?.[randomNumber]?.overview}</p>
     </CarouselContainer>
   )
 }

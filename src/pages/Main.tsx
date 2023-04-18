@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import Carousel from "../components/Carousel"
 import MovieList from "../components/MovieList"
 import Header from "../components/Header"
@@ -15,9 +14,10 @@ const Main = () => {
     <MainContainer>
      <Header />
      <Carousel />
-     <MovieList kind='dailyBoxOffice' />
-     <MovieList kind='weeklyBoxOffice' />
-     <MovieList kind='' />
+     <MovieList kind='dailyBoxOffice' title='일일 박스오피스' />
+     <MovieList kind='popularity' title='가장 인기있는 영화' />
+     <MovieList kind='release_date' title='최신 영화' />
+     <MovieList kind='vote_average' title='평점이 높은 영화' />
     </MainContainer>
   )
 }
