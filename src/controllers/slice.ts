@@ -73,19 +73,19 @@ const moviesDataSlice = createSlice({
     .addCase(getMoviesData.fulfilled, (state, action) => {
       //fetch성공 후 수행할 action 작성
 
-      console.log(action.payload)
       //boxOffice만 따로 별개의 state로 관리
       const dailyUpdate = action.payload[0]?.results
       state.moviesData.dailyBoxOffice = dailyUpdate
 
+      //중복되는 konfig api data 제거
+      const setData = action.payload.slice(1)
       //각각 fetch해온 모든 movie data를 하나의 배열로 합침
-      const mergeData = action.payload.reduce((acc, movieList) => {
+      const mergeData = setData.reduce((acc, movieList) => {
         return [...acc, ...movieList.results]
       }, [])
 
-      //중복되는 konfig api data 제거
-      const setData = mergeData.slice(1)
-      state.moviesData.allMovies = setData
+      // const setData = mergeData.slice(1)
+      state.moviesData.allMovies = mergeData
     })
 
     .addCase(getMoviesData.rejected, (state) => {

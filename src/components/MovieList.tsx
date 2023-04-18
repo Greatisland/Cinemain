@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
 import { useAppSelector } from '../controllers/hooks'
+import setMoviesSortFunc from '../controllers/setMoviesSortFunc'
 
 const MovieListContainer = styled.div`
   width: 100%;
@@ -28,7 +29,7 @@ interface Props {
   title: string
 }
 
-interface MovieInfo {
+export interface MovieInfo {
   backdrop_path: string
   genre_ids: number[]
   original_language: string
@@ -46,31 +47,13 @@ const MovieList = ({ kind, title }: Props) => {
 
   //필요한 정보를 state로부터 가져옴. 
   const { dailyBoxOffice, allMovies } = useAppSelector(state => state.moviesData.moviesData)
-  // console.log(allMovies)
-
-  const releaseCalc = (date?: string) => {
-    if(!date) return 0
-    const sliceDate = date.split('-')
-    return ((Number(sliceDate[0])*12*30) + (Number(sliceDate[1])*12) + Number(sliceDate[2]))
-  }
-
-
-  const setRenderFilter = (param: string) => {
-    let renderMovie = [...allMovies]
-    if(param==='release_date'){
-      renderMovie.sort((a, b) => {
-        return releaseCalc(b[param]) - releaseCalc(a[param])
-      })
-    }
-    return renderMovie.sort((a, b) => b[param] - a[param])
-  }
 
   //조건부 렌더링 위한 if문
   let movieList: MovieInfo[] = []
   if(kind==='dailyBoxOffice'){
     movieList = dailyBoxOffice ?? []
   }else if(typeof kind === "string"){
-    movieList = setRenderFilter(kind) || []
+    movieList = setMoviesSortFunc(kind, allMovies) || []
   }else{
     movieList = []
   }
@@ -84,7 +67,7 @@ const MovieList = ({ kind, title }: Props) => {
             <Link to='/pages/Datail'>
               {movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
               <p>{movie?.title}</p>
-              <span>{movie[kind]}</span>
+              <span>{movie[kind as keyof MovieInfo]}</span>
             </Link>
           </li>
         ))}
