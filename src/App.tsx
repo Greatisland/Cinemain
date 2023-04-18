@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react"
-import { BrowserRouter, Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import Detail from "./pages/Detail"
 import GlobalStyle from "./styles/GlobalStyle"
 import { getMoviesData } from "./controllers/slice";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 const App = () => {
   const dispatch = useDispatch()

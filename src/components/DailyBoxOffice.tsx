@@ -5,6 +5,8 @@ import { Link } from "react-router-dom"
 
 const DailyBoxOfficeContainer = styled.div`
   width: 100%;
+  padding: 0 50px; 
+  box-sizing: border-box;
   h3 {
     font-size: 1.7em;
   }
@@ -34,14 +36,13 @@ const DailyBoxOffice = () => {
       {dailyBoxOffice?.map((movie) => (
         <li key={movie?.id}>
           <Link to='../pages/Datail'>
-            {movie?.poster_path&&<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />}
+            {movie?.poster_path&&<img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
             <p>{movie?.title}</p>
             <span>{movie?.popularity}</span>
           </Link>
         </li>
       ))}
       </ul>
-
     </DailyBoxOfficeContainer>
   )
 }

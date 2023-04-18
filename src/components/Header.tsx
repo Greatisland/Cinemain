@@ -2,10 +2,15 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 const HeaderContainer = styled.div`
-  height: 70px;
+  width: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  height: 100px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
+  padding: 0 50px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0));
   h1 {
     line-height: 70px;
     color: #d60b0b;
