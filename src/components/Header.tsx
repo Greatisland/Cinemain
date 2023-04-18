@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 const HeaderContainer = styled.div`
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0; left: 0;
   height: 100px;
   box-sizing: border-box;

@@ -37,8 +37,6 @@ export const getMoviesData = createAsyncThunk("moviesData/getMoviesData", async 
   const jsonData = await Promise.all(responses.map((response) => response.json()))
   let data = [...jsonData]
 
-  console.log(jsonData)
-
   //konfig api의 json data는 getMoviesConversion를 통해 tmdb api와 같은 형식으로 변환
   data[0] = await getMoviesConversion(jsonData[0]?.boxOfficeResult?.dailyBoxOfficeList)
   data[1] = await getMoviesConversion(jsonData[1]?.boxOfficeResult?.weeklyBoxOfficeList)
@@ -79,8 +77,6 @@ const moviesDataSlice = createSlice({
     .addCase(getMoviesData.fulfilled, (state, action) => {
       //fetch성공 후 수행할 action 작성
 
-      console.log(action.payload)
-
       //boxOffice만 따로 별개의 state로 관리
       const dailyUpdate = action.payload[0]?.results
       const weeklyUpdate = action.payload[1]?.results
@@ -93,7 +89,6 @@ const moviesDataSlice = createSlice({
         return [...acc, ...movieList.results]
       }, [])
       state.moviesData.allMovies = mergeData
-      console.log(state.moviesData.dailyBoxOffice)
     })
 
     .addCase(getMoviesData.rejected, (state) => {

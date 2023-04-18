@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom"
 import Carousel from "../components/Carousel"
-import DailyBoxOffice from "../components/DailyBoxOffice"
+import MovieList from "../components/MovieList"
 import Header from "../components/Header"
 import styled from "styled-components"
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 40px;
 `
 
 const Main = () => {
@@ -15,8 +15,9 @@ const Main = () => {
     <MainContainer>
      <Header />
      <Carousel />
-     <DailyBoxOffice />
-     <Link to='./pages/Detail'><p>간당!</p></Link>
+     <MovieList kind='dailyBoxOffice' />
+     <MovieList kind='weeklyBoxOffice' />
+     <MovieList kind='' />
     </MainContainer>
   )
 }
