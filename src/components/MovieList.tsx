@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom"
-import { useAppSelector } from '../controllers/hooks'
+import { useAppSelector, useAppDispatch } from '../controllers/hooks'
 import setMoviesSortFunc from '../controllers/setMoviesSortFunc'
+import type { MovieInfo } from '../controllers/slice'
+import { setDetail } from '../controllers/slice'
 
 const MovieListContainer = styled.div`
   width: 100%;
@@ -29,21 +31,9 @@ interface Props {
   title: string
 }
 
-export interface MovieInfo {
-  backdrop_path: string
-  genre_ids: number[]
-  original_language: string
-  original_title: string
-  overview: string
-  popularity: number
-  poster_path: string
-  release_date: string
-  title: string
-  vote_average: number
-  vote_count: number
-}
-
 const MovieList = ({ kind, title }: Props) => {
+
+  const dispatch = useAppDispatch()
 
   //필요한 정보를 state로부터 가져옴. 
   const { dailyBoxOffice, allMovies } = useAppSelector(state => state.moviesData.moviesData)
@@ -58,13 +48,14 @@ const MovieList = ({ kind, title }: Props) => {
     movieList = []
   }
 
+  
   return (
     <MovieListContainer>
       <h3>{title}</h3>
       <ul>
         {movieList?.map((movie: MovieInfo, i: number) => (
           <li key={i}>
-            <Link to='/pages/Datail'>
+            <Link to='pages/Detail' onClick={() => {dispatch(setDetail(movieList[i]))}}>
               {movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
               <p>{movie?.title}</p>
               <span>{movie[kind as keyof MovieInfo]}</span>

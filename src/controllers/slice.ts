@@ -15,18 +15,18 @@ const dateCalc = () => {
 const urls = [
   //한국 영화 konfig api (한국의 박스오피스 불러오는 용도로 사용)
   `${process.env.DAILY_BOX_OFFICE}?key=${process.env.KONFIC_KEY}&targetDt=${dateCalc()}&itemPerPage=10`,
-
   //외국 영화 tmdb api (메인 api로 사용)
+  `${process.env.GENRE_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko`,
   `${process.env.POPULAR_MOVIE}?api_key=${process.env.TMDB_KEY}&language=ko&page=`,
 ]
 
 //fetch요청 작성.
-const fetchRequests = [fetch(urls[0])]
+const fetchRequests = [fetch(urls[0]),fetch(urls[1])]
 
 //tmdb api의 불러오고 싶은 page 숫자만큼 반복문 설정.
 for(let i=0; i<10; i++){
   fetchRequests.push(
-    fetch(urls[1] + String(i+1))
+    fetch(urls[2] + String(i+1))
   )
 }
 
@@ -43,26 +43,59 @@ export const getMoviesData = createAsyncThunk("movies/getMoviesData", async () =
 })
 
 //state 초기 값
-interface MoviesData {
-  dailyBoxOffice: []
-  allMovies: []
-  }
-  
 interface InitialState {
   moviesData: MoviesData
+}
+
+interface MoviesData {
+  dailyBoxOffice: MovieInfo[]
+  allMovies: MovieInfo[]
+  genres: Genres
+  currentDetail: MovieInfo
+  }
+
+export interface MovieInfo {
+  backdrop_path?: string
+  genre_ids?: number[]
+  original_language?: string
+  original_title?: string
+  overview?: string
+  popularity?: number
+  poster_path?: string
+  release_date?: string
+  title?: string
+  vote_average?: number
+  vote_count?: number
+  id?: number
+}
+
+interface Genres {
+  [key: number]: string
+}
+
+interface JsonGenre {
+  id: number
+  name: string
 }
 
 const initialState: InitialState = {
   moviesData: {
     dailyBoxOffice : [],
-    allMovies: []
+    allMovies: [],
+    genres: {0: ''},
+    currentDetail: {}
   }
 }
 
+//reducer, state를 모두 관리할 slice
 const moviesDataSlice = createSlice({
   name: "moviesData",
   initialState,
-  reducers: {},
+  reducers: {
+    setDetail: (state, action) => {
+      state.moviesData.currentDetail = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder
     .addCase(getMoviesData.pending, (state) => {
@@ -77,22 +110,33 @@ const moviesDataSlice = createSlice({
       const dailyUpdate = action.payload[0]?.results
       state.moviesData.dailyBoxOffice = dailyUpdate
 
-      //중복되는 konfig api data 제거
-      const setData = action.payload.slice(1)
+      //genre 정보 state 저장
+      const genreArray = action.payload[1]?.genres
+      let genreUpdate: Genres = {}
+      genreArray.forEach((genre: JsonGenre) => {
+        const [key, value] = Object.values(genre)
+        genreUpdate[key] = value
+      })
+      
+      
+      state.moviesData.genres = genreUpdate
+
+      //merge 할 데이터 중 중복되는 konfig api data 및 장르 데이터 제외
+      const setData = action.payload.slice(2)
       //각각 fetch해온 모든 movie data를 하나의 배열로 합침
       const mergeData = setData.reduce((acc, movieList) => {
         return [...acc, ...movieList.results]
       }, [])
 
-      // const setData = mergeData.slice(1)
       state.moviesData.allMovies = mergeData
+      console.log(state.moviesData.genres)
     })
 
     .addCase(getMoviesData.rejected, (state) => {
       //fetch 실패 시 수행할 action 작성
-      console.log('실패 ㅠㅠ')
+      console.log('fetch 실패 ㅠㅠ')
     })
   },
 })
-
+export const { setDetail } = moviesDataSlice.actions
 export default moviesDataSlice.reducer

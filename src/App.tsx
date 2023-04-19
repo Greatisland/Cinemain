@@ -21,10 +21,9 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/pages/Detail" element={<Detail />} />
+        <Route path="pages/Detail" element={<Detail />} />
       </Routes>
     </BrowserRouter>
-
    </>
   )
 }

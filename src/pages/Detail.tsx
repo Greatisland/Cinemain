@@ -1,17 +1,35 @@
-import { useDispatch, useSelector } from 'react-redux'
-const Main = () => {
+import { useAppSelector } from "../controllers/hooks"
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import styled from "styled-components"
 
-  //필요한 정보를 state로부터 가져옴. 
-  // const { dailyBoxOfficeList } = useSelector((state) => state.moviesData.boxOfficeResult)
+const DetailContainer = styled.div`
+  display: flex;
+`
+
+const ImgSection = styled.div`
+  
+`
+
+const InfoSection = styled.div`
+  
+`
+
+const Main = () => {
+  const { allMovies, currentDetail } = useAppSelector(state => state.moviesData.moviesData)
+
   return (
-    <>
-     {/* <p>몰?루</p>
-     <ul>
-     {dailyBoxOfficeList.map((movie) => (
-          <li key={movie.rank}>{movie.movieNm}</li>
-        ))}
-     </ul> */}
-    </>
+    <DetailContainer>
+      <Header />
+      <ImgSection>
+        <img src={`https://image.tmdb.org/t/p/w500/${currentDetail.poster_path}`} />
+      </ImgSection>
+      <InfoSection>
+        <div>
+        </div>
+      </InfoSection>
+      <Footer />
+    </DetailContainer>
   )
 }
 

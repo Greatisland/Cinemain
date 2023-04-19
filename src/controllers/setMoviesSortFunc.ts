@@ -1,4 +1,4 @@
-import type { MovieInfo } from "../components/MovieList"
+import type { MovieInfo } from "./slice"
 const setMoviesSortFunc = (param: string, movies:MovieInfo[] ) => {
   
   //날짜의 sort를 위한 절대값을 반환하는 함수
@@ -10,11 +10,12 @@ const setMoviesSortFunc = (param: string, movies:MovieInfo[] ) => {
     const total = (year * 12 + month - 1) * daysInMonth + day
     return total
   }
+
   let renderMovie = [...movies]
   if(param==='release_date'){
-    renderMovie.sort((a, b) => {
-      return releaseCalc(b[param]) - releaseCalc(a[param])
-    })
+    return renderMovie.sort((a, b) => (
+      releaseCalc(b[param]) - releaseCalc(a[param])
+    ))
   }
   return renderMovie.sort((a, b) => Number(b[param as keyof MovieInfo] ) - Number(a[param as keyof MovieInfo]))
 }

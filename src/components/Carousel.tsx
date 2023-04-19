@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-
+import { useAppSelector } from "../controllers/hooks";
+// import type { MovieInfo } from "./MovieList";
 
 interface CarouselContainerProps {
   background?: string;
@@ -50,9 +50,9 @@ const CarouselContainer = styled.div<CarouselContainerProps>`
 
 const Carousel = () => {
   //매번 다른 carousel이 나오도록 랜덤 난수화 적용
-  let randomNumber = Math.floor(Math.random() * 10) - 1
+  const randomNumber = Math.floor(Math.random() * 10) - 1
 
-  const { dailyBoxOffice } = useSelector(state => state?.moviesData?.moviesData)
+  const { dailyBoxOffice } = useAppSelector(state => state.moviesData.moviesData)
 
   return (
     <CarouselContainer background={dailyBoxOffice[randomNumber]?.backdrop_path}>
