@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Main from "./pages/Main"
-import Detail from "./pages/Detail"
+import Detail from "./pages/sub/Detail"
+import GridList from "./pages/sub/GridList"
 import GlobalStyle from "./styles/GlobalStyle"
 import { getMoviesData } from "./controllers/slice"
 import { useAppDispatch } from "./controllers/hooks"
@@ -14,14 +15,14 @@ const App = () => {
     dispatch(getMoviesData())
   },[])
 
-  
   return (
    <>
     <GlobalStyle />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="pages/Detail" element={<Detail />} />
+        <Route path="pages/sub/Detail" element={<Detail />} />
+        <Route path="pages/sub/GridList" element={<GridList />} />
       </Routes>
     </BrowserRouter>
    </>

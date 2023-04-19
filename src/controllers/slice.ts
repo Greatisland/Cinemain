@@ -130,7 +130,6 @@ const moviesDataSlice = createSlice({
       }, [])
 
       state.moviesData.allMovies = mergeData
-      console.log(state.moviesData.genres)
     })
 
     .addCase(getMoviesData.rejected, (state) => {

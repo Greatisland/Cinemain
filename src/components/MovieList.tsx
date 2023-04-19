@@ -55,7 +55,7 @@ const MovieList = ({ kind, title }: Props) => {
       <ul>
         {movieList?.map((movie: MovieInfo, i: number) => (
           <li key={i}>
-            <Link to='pages/Detail' onClick={() => {dispatch(setDetail(movieList[i]))}}>
+            <Link to='pages/sub/Detail' onClick={() => {dispatch(setDetail(movieList[i]))}}>
               {movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
               <p>{movie?.title}</p>
               <span>{movie[kind as keyof MovieInfo]}</span>

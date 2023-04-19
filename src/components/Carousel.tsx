@@ -59,7 +59,7 @@ const Carousel = () => {
   return (
     <CarouselContainer background={dailyBoxOffice[randomNumber]?.backdrop_path}>
       <h3>{dailyBoxOffice[randomNumber]?.title}</h3>
-      <Link to='pages/Detail' onClick={()=>{dispatch(setDetail(dailyBoxOffice[randomNumber]))}}>바로가기</Link>
+      <Link to='pages/sub/Detail' onClick={()=>{dispatch(setDetail(dailyBoxOffice[randomNumber]))}}>바로가기</Link>
       <p>{dailyBoxOffice[randomNumber]?.overview}</p>
     </CarouselContainer>
   )
