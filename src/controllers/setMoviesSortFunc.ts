@@ -1,7 +1,7 @@
 import type { MovieInfo } from "./slice"
-const setMoviesSortFunc = (param: string, movies:MovieInfo[] ) => {
+const setMoviesSortFunc = (param: string, movies:MovieInfo[]) => {
   
-  //날짜의 sort를 위한 절대값을 반환하는 함수
+  //param이 날짜일 경우 sort하기위한 절대값을 반환
   const releaseCalc = (date?: string) => {
     //date가 undefined나 null일 경우 0을 반환
     if(!date) return 0

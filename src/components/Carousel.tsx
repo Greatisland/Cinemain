@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { useAppSelector } from "../controllers/hooks";
-// import type { MovieInfo } from "./MovieList";
+import { useAppSelector, useAppDispatch } from "../controllers/hooks";
+import { setDetail } from "../controllers/slice";
 
 interface CarouselContainerProps {
   background?: string;
@@ -49,16 +49,18 @@ const CarouselContainer = styled.div<CarouselContainerProps>`
 
 
 const Carousel = () => {
+  const dispatch = useAppDispatch()
+
   //매번 다른 carousel이 나오도록 랜덤 난수화 적용
-  const randomNumber = Math.floor(Math.random() * 10) - 1
+  const randomNumber = Math.floor(Math.random() * 10)
 
   const { dailyBoxOffice } = useAppSelector(state => state.moviesData.moviesData)
 
   return (
     <CarouselContainer background={dailyBoxOffice[randomNumber]?.backdrop_path}>
-      <h3>{dailyBoxOffice?.[randomNumber]?.title}</h3>
-      <Link to='../pages/Detail'>바로가기</Link>
-      <p>{dailyBoxOffice?.[randomNumber]?.overview}</p>
+      <h3>{dailyBoxOffice[randomNumber]?.title}</h3>
+      <Link to='pages/Detail' onClick={()=>{dispatch(setDetail(dailyBoxOffice[randomNumber]))}}>바로가기</Link>
+      <p>{dailyBoxOffice[randomNumber]?.overview}</p>
     </CarouselContainer>
   )
 }

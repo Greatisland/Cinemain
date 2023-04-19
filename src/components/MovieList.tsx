@@ -20,7 +20,7 @@ const MovieListContainer = styled.div`
     li {
       display: flex;
       flex-wrap: wrap;
-      img {
+      img {                                                                                                                                                                   
       }
     }
   }

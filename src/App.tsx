@@ -1,10 +1,10 @@
 import { useEffect } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./pages/Main";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Main from "./pages/Main"
 import Detail from "./pages/Detail"
 import GlobalStyle from "./styles/GlobalStyle"
-import { getMoviesData } from "./controllers/slice";
-import { useAppDispatch } from "./controllers/hooks";
+import { getMoviesData } from "./controllers/slice"
+import { useAppDispatch } from "./controllers/hooks"
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -14,7 +14,7 @@ const App = () => {
     dispatch(getMoviesData())
   },[])
 
- 
+  
   return (
    <>
     <GlobalStyle />

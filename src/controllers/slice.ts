@@ -67,6 +67,7 @@ export interface MovieInfo {
   vote_average?: number
   vote_count?: number
   id?: number
+  adult?:boolean
 }
 
 interface Genres {
