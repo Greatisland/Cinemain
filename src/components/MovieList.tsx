@@ -58,7 +58,7 @@ const MovieList = ({ kind, title }: Props) => {
             <Link to='pages/sub/Detail' onClick={() => {dispatch(setDetail(movieList[i]))}}>
               {movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
               <p>{movie?.title}</p>
-              <span>{movie[kind as keyof MovieInfo]}</span>
+              <span>{kind==='dailyBoxOffice'?i+1+'위':movie[kind as keyof MovieInfo]}</span>
             </Link>
           </li>
         ))}
