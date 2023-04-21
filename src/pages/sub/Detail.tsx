@@ -2,6 +2,7 @@ import { useAppSelector } from "../../controllers/hooks"
 import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom"
 
 const DetailContainer = styled.div`
   display: flex;
@@ -78,24 +79,25 @@ const OverviewSection = styled.div`
 `
 
 const Main = () => {
-  const { currentDetail, genres } = useAppSelector(state => state.moviesData.moviesData)
+  const { genres } = useAppSelector(state => state.moviesData.moviesData)
+  const location = useLocation()
   return (
     <DetailContainer>
       <Header />
-      <img src={`https://image.tmdb.org/t/p/w500/${currentDetail.poster_path}`} />
+      <img src={`https://image.tmdb.org/t/p/w500/${location.state.poster_path}`} />
       <InfoSection>
         <section>
-          <h3>{currentDetail.title}</h3>
-          <span>{Math.floor(Number(currentDetail.vote_average)*10)/10}</span>
+          <h3>{location.state.title}</h3>
+          <span>{Math.floor(Number(location.state.vote_average)*10)/10}</span>
           <span>☆</span>
         </section>
-        <SubTitle>{currentDetail.release_date?.split('-')[0]}{currentDetail.adult?'| 청소년 관람 불가': null}</SubTitle>   
+        <SubTitle>{location.state.release_date?.split('-')[0]}{location.state.adult?'| 청소년 관람 불가': null}</SubTitle>   
         <OverviewSection>
           <span>OVERVIEW</span>
-          <p>{currentDetail.overview}</p>
+          <p>{location.state.overview}</p>
           <strong>장르</strong>
           <ul>
-          {currentDetail?.genre_ids?.map(genre => (
+          {location.state?.genre_ids?.map((genre: number) => (
             <li>{genres[genre]}</li>
           ))}
           </ul>

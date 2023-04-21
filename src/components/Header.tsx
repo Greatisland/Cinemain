@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { useAppDispatch } from "../controllers/hooks"
+import searchFunc from "../controllers/searchFunc"
 
 const HeaderContainer = styled.div`
   width: 100%;

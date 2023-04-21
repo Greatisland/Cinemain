@@ -51,7 +51,6 @@ interface MoviesData {
   dailyBoxOffice: MovieInfo[]
   allMovies: MovieInfo[]
   genres: Genres
-  currentDetail: MovieInfo
   }
 
 export interface MovieInfo {
@@ -83,8 +82,7 @@ const initialState: InitialState = {
   moviesData: {
     dailyBoxOffice : [],
     allMovies: [],
-    genres: {0: ''},
-    currentDetail: {}
+    genres: {0: ''}
   }
 }
 
@@ -93,9 +91,9 @@ const moviesDataSlice = createSlice({
   name: "moviesData",
   initialState,
   reducers: {
-    setDetail: (state, action) => {
-      state.moviesData.currentDetail = action.payload
-    }
+    // setDetail: (state, action) => {
+    //   state.moviesData.currentDetail = action.payload
+    // }
   },
   extraReducers: (builder) => {
     builder
@@ -138,5 +136,5 @@ const moviesDataSlice = createSlice({
     })
   },
 })
-export const { setDetail } = moviesDataSlice.actions
+// export const { setDetail } = moviesDataSlice.actions
 export default moviesDataSlice.reducer
