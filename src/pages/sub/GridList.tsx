@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { useAppSelector } from "../../controllers/hooks"
 import setMoviesSortFunc from "../../controllers/setMoviesSortFunc"
-import { useEffect } from "react"
+import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import type { MovieInfo } from "../../controllers/slice"
 
@@ -37,33 +37,37 @@ const FilterButtonContainer = styled.div`
   justify-content: center;
   gap: 50px;
   margin: 0 0 20px 0;
-`
-
-const FilterButton = styled.div`
   
+  button {
+    background: inherit;
+    /* border-bottom: 1px solid #fff; */
+    padding: 4px 12px;
+    cursor: pointer;
+    box-shadow: none;
+    overflow:visible;
+    /* border: none; */
+  }
 `
 
 const GridList = () => {
   const { allMovies } = useAppSelector(state => state.moviesData.moviesData)
   const location = useLocation()
+  const [ renderList, setRenderList ] = useState(location.state)
 
   let movieList: MovieInfo[] = []
-  if(typeof location.state === "string"){
-    movieList = setMoviesSortFunc(location.state, allMovies) || []
+  if(typeof renderList === "string"){
+    movieList = setMoviesSortFunc(renderList, allMovies) || []
   }else{
     movieList = []
   }
-  useEffect(() => {
-    
-  }, [movieList])  
 
   return (
     <GridListContainer>
       <Header />
       <FilterButtonContainer>
-        <FilterButton>인기순</FilterButton>
-        <FilterButton>최신순</FilterButton>
-        <FilterButton>평점순</FilterButton>
+        <button onClick={() => {setRenderList('popularity')}}>인기순</button>
+        <button onClick={() => {setRenderList('release_date')}}>최신순</button>
+        <button onClick={() => {setRenderList('vote_average')}}>평점순</button>
       </FilterButtonContainer>
       {movieList?.map((movie, i) => (
         <CardMovie key={i}>

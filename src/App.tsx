@@ -14,7 +14,6 @@ const App = () => {
   useEffect(() => {
     dispatch(getMoviesData())
   },[])
-
   return (
    <>
     <GlobalStyle />
