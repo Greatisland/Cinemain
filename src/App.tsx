@@ -21,7 +21,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="pages/sub/Detail" element={<Detail />} />
-        <Route path="pages/sub/GridList" element={<GridList />} />
+        <Route path="pages/sub/GridList/*" element={<GridList />} />
       </Routes>
     </BrowserRouter>
    </>

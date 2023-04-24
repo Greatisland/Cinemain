@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { useAppDispatch } from "../controllers/hooks"
-import searchFunc from "../controllers/searchFunc"
+import React, { useState } from "react"
+import { searchState } from "../controllers/slice"
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -34,11 +35,21 @@ const HeaderContainer = styled.div`
 
 
 const Header = () => {
+  const [keyword, setKeyword] = useState('')
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+
+  const setKeywordToss = (e: React.FormEvent) => {
+    e.preventDefault()
+    dispatch(searchState(keyword))
+    navigate('pages/sub/GridList')
+  }
+
   return (
     <HeaderContainer>
       <Link to="/"><h1>LETFLIX</h1></Link>
-      <form>
-        <input type="search" placeholder="검색어를 입력해주세요."></input>
+      <form onSubmit={setKeywordToss}>
+        <input type="search" onChange={(e)=>{setKeyword(e.target.value)}} placeholder="검색어를 입력해주세요."></input>
       </form>
     </HeaderContainer>
   )

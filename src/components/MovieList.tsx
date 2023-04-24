@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { useAppSelector } from '../controllers/hooks'
 import setMoviesSortFunc from '../controllers/setMoviesSortFunc'
 import type { MovieInfo } from '../controllers/slice'
-import renderCondition from '../controllers/renderCondition'
 
 const MovieListContainer = styled.div`
   width: 100%;
