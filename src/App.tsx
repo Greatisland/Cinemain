@@ -6,6 +6,8 @@ import GridList from "./pages/sub/GridList"
 import GlobalStyle from "./styles/GlobalStyle"
 import { getMoviesData } from "./controllers/slice"
 import { useAppDispatch } from "./controllers/hooks"
+import SubPages from "./pages/sub/SubPages"
+import ScrollToTop from "./components/ScrollToTop"
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -18,10 +20,13 @@ const App = () => {
    <>
     <GlobalStyle />
     <BrowserRouter>
+      {/* ScrollToTop = 페이지 이동 시 스크롤 초기화 */}
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="pages/sub/Detail" element={<Detail />} />
-        <Route path="pages/sub/GridList/*" element={<GridList />} />
+        <Route path="/pages/sub" element={<SubPages children />} />
+        <Route path="/pages/sub/Detail" element={<Detail />} />
+        <Route path="/pages/sub/GridList" element={<GridList />} />
       </Routes>
     </BrowserRouter>
    </>
