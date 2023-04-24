@@ -78,7 +78,7 @@ const OverviewSection = styled.div`
   }
 `
 
-const Main = () => {
+const Detail = () => {
   const { genres } = useAppSelector(state => state.moviesData.moviesData)
   const location = useLocation()
   return (
@@ -108,4 +108,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default Detail

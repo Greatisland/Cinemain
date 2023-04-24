@@ -38,12 +38,12 @@ const Header = () => {
   const [keyword, setKeyword] = useState('')
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-
   const setKeywordToss = (e: React.FormEvent) => {
     e.preventDefault()
     dispatch(searchState(keyword))
-    navigate('pages/sub/GridList')
+    navigate('/pages/sub/GridList')
   }
+  dispatch(searchState(keyword))
 
   return (
     <HeaderContainer>

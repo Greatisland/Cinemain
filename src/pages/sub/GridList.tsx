@@ -7,6 +7,7 @@ import setMoviesSortFunc from "../../controllers/setMoviesSortFunc"
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import type { MovieInfo } from "../../controllers/slice"
+import searchFunc from "../../controllers/searchFunc"
 
 const GridListContainer = styled.div`
   padding: 100px 0;
@@ -50,15 +51,18 @@ const FilterButtonContainer = styled.div`
 `
 
 const GridList = () => {
-  const { allMovies } = useAppSelector(state => state.moviesData.moviesData)
+  const { allMovies, keyword } = useAppSelector(state => state.moviesData.moviesData)
   const location = useLocation()
   const [ renderList, setRenderList ] = useState(location.state)
+  
+
+  let filterMovies = searchFunc(allMovies, keyword)
 
   let movieList: MovieInfo[] = []
-  if(typeof renderList === "string"){
-    movieList = setMoviesSortFunc(renderList, allMovies) || []
+  if(renderList){
+    movieList = setMoviesSortFunc(renderList, filterMovies)
   }else{
-    movieList = []
+    movieList = filterMovies
   }
 
   return (
