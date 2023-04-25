@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import getMoviesConversion from "./getMoviesConversion";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import getMoviesConversion from "./getMoviesConversion"
 
 //날짜 계산
 const dateCalc = () => {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { useAppDispatch } from "../controllers/hooks"
-import React, { useState } from "react"
+import React, { useRef } from "react"
 import { searchState } from "../controllers/slice"
 
 const HeaderContainer = styled.div`
@@ -35,24 +35,27 @@ const HeaderContainer = styled.div`
 
 
 const Header = () => {
-  const [keyword, setKeyword] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const setKeywordToss = (e: React.FormEvent) => {
     e.preventDefault()
+    const keyword = inputRef.current?.value
     dispatch(searchState(keyword))
-    navigate('/pages/sub/GridList')
+    if(keyword){
+      navigate('/pages/sub/GridList')
+    }else{
+      alert('검색어를 입력해주세요.')
+    }
   }
-  dispatch(searchState(keyword))
 
   return (
     <HeaderContainer>
       <Link to="/"><h1>LETFLIX</h1></Link>
       <form onSubmit={setKeywordToss}>
-        <input type="search" onChange={(e)=>{setKeyword(e.target.value)}} placeholder="검색어를 입력해주세요."></input>
+        <input type="search" ref={inputRef} placeholder="검색어를 입력해주세요."></input>
       </form>
     </HeaderContainer>
   )
 }
-
 export default Header
