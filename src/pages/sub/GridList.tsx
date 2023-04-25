@@ -2,13 +2,12 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { useAppSelector, useAppDispatch } from "../../controllers/hooks"
+import { useAppSelector } from "../../controllers/hooks"
 import setMoviesSortFunc from "../../controllers/setMoviesSortFunc"
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import type { MovieInfo } from "../../controllers/slice"
 import searchFunc from "../../controllers/searchFunc"
-import { searchState } from "../../controllers/slice"
 
 const GridListContainer = styled.div`
   padding: 100px 0;

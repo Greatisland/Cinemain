@@ -24,7 +24,7 @@ const urls = [
 const fetchRequests = [fetch(urls[0]),fetch(urls[1])]
 
 //tmdb api의 불러오고 싶은 page 숫자만큼 반복문 설정.
-for(let i=0; i<10; i++){
+for(let i=0; i<30; i++){
   fetchRequests.push(
     fetch(urls[2] + String(i+1))
   )
@@ -52,7 +52,7 @@ interface MoviesData {
   allMovies: MovieInfo[]
   genres: Genres
   keyword: string
-  }
+}
 
 export interface MovieInfo {
   backdrop_path?: string
