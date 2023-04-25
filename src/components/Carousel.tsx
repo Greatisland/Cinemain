@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import { useAppSelector } from "../controllers/hooks";
@@ -61,5 +62,4 @@ const Carousel = () => {
     </CarouselContainer>
   )
 }
-
 export default Carousel

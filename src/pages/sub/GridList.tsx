@@ -2,12 +2,13 @@ import Header from "../../components/Header"
 import Footer from "../../components/Footer"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import { useAppSelector } from "../../controllers/hooks"
+import { useAppSelector, useAppDispatch } from "../../controllers/hooks"
 import setMoviesSortFunc from "../../controllers/setMoviesSortFunc"
 import { useState } from "react"
 import { useLocation } from "react-router-dom"
 import type { MovieInfo } from "../../controllers/slice"
 import searchFunc from "../../controllers/searchFunc"
+import { searchState } from "../../controllers/slice"
 
 const GridListContainer = styled.div`
   padding: 100px 0;
@@ -41,12 +42,10 @@ const FilterButtonContainer = styled.div`
   
   button {
     background: inherit;
-    /* border-bottom: 1px solid #fff; */
     padding: 4px 12px;
     cursor: pointer;
     box-shadow: none;
     overflow:visible;
-    /* border: none; */
   }
 `
 
@@ -55,11 +54,14 @@ const GridList = () => {
   const location = useLocation()
   const [ renderList, setRenderList ] = useState(location.state)
   
-
   let filterMovies = searchFunc(allMovies, keyword)
 
   let movieList: MovieInfo[] = []
-  if(renderList){
+  //카테고리 선택으로 페이지에 진입했을 경우 필터링하지 않음
+  if(location.state){
+    movieList = setMoviesSortFunc(renderList, allMovies)
+  //검색으로 페이지에 진입했을 경우 검색 키워드에 따른 필터링
+  }else if(renderList){
     movieList = setMoviesSortFunc(renderList, filterMovies)
   }else{
     movieList = filterMovies
