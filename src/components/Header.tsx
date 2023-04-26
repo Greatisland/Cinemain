@@ -16,19 +16,28 @@ const HeaderContainer = styled.div`
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0));
   h1 {
     line-height: 70px;
-    color: #d60b0b;
+    color: #07d4a8b7;
     font-size: 3em;
   }
   form {
-    height: 70px;
+    height: 100px;
     display: flex;
     align-items: center;
     input {
-      width: 400px;
+      width: 100px;
       padding: 10px 20px;
       box-sizing: border-box;
-      background: #fff;
-      color: #333;
+      background: #000;
+      border-radius: 30px;
+      color: #fff;
+      border: none;
+      transition: 0.7s;
+      :hover {
+        width: 300px;
+      }
+      :focus {
+        width: 300px;
+      }
     }
   }
 `
@@ -51,9 +60,9 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <Link to="/"><h1>LETFLIX</h1></Link>
+      <Link to="/"><h1>Cinemain</h1></Link>
       <form onSubmit={setKeywordToss}>
-        <input type="search" ref={inputRef} placeholder="검색어를 입력해주세요."></input>
+        <input type="search" ref={inputRef} placeholder="Search"></input>
       </form>
     </HeaderContainer>
   )

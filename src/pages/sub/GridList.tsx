@@ -26,10 +26,18 @@ const GridListContainer = styled.div`
 
 const ImgContainer = styled.div`
   min-height: 278px;
+  img {
+    max-width: 185px;
+    height: 278px;
+  }
 `
 
 const CardMovie = styled.div`
-  
+  span {
+    text-align: center;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
 `
 
 const FilterButtonContainer = styled.div`
@@ -39,12 +47,12 @@ const FilterButtonContainer = styled.div`
   gap: 50px;
   margin: 0 0 20px 0;
   
-  button {
-    background: inherit;
+  .button {
     padding: 4px 12px;
     cursor: pointer;
-    box-shadow: none;
-    overflow:visible;
+    &.on {
+      border-bottom: 4px solid #07d4a8b7;
+    }
   }
 `
 
@@ -70,13 +78,13 @@ const GridList = () => {
     <GridListContainer>
       <Header />
       <FilterButtonContainer>
-        <button onClick={() => {setRenderList('popularity')}}>인기순</button>
-        <button onClick={() => {setRenderList('release_date')}}>최신순</button>
-        <button onClick={() => {setRenderList('vote_average')}}>평점순</button>
+        <div className={`button ${renderList==='popularity'?'on':''}`} onClick={() => {setRenderList('popularity')}}>인기순</div>
+        <div className={`button ${renderList==='release_date'?'on':''}`} onClick={() => {setRenderList('release_date')}}>최신순</div>
+        <div className={`button ${renderList==='vote_average'?'on':''}`} onClick={() => {setRenderList('vote_average')}}>평점순</div>
       </FilterButtonContainer>
       {movieList?.map((movie, i) => (
         <CardMovie key={i}>
-          <Link to='../pages/sub/Detail' state={movieList[i]}>
+          <Link to='../pages/sub/Detail' state={movie}>
             <ImgContainer>{movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}</ImgContainer>
             <span>{movie.title}</span>
           </Link>
