@@ -1,13 +1,15 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { getMoviesData } from "./controllers/slice"
+import { useAppDispatch } from "./controllers/hooks"
 import Main from "./pages/Main"
 import Detail from "./pages/sub/Detail"
 import GridList from "./pages/sub/GridList"
 import GlobalStyle from "./styles/GlobalStyle"
-import { getMoviesData } from "./controllers/slice"
-import { useAppDispatch } from "./controllers/hooks"
 import SubPages from "./pages/sub/SubPages"
+import BoxOffice from "./pages/sub/BoxOffice"
 import ScrollToTop from "./components/ScrollToTop"
+
 
 const App = () => {
   const dispatch = useAppDispatch()
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="/pages/sub" element={<SubPages children />} />
         <Route path="/pages/sub/Detail" element={<Detail />} />
         <Route path="/pages/sub/GridList" element={<GridList />} />
+        <Route path="/pages/sub/BoxOffice" element={<BoxOffice />} />
       </Routes>
     </BrowserRouter>
    </>

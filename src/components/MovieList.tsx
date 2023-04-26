@@ -3,6 +3,9 @@ import { Link } from "react-router-dom"
 import { useAppSelector } from '../controllers/hooks'
 import setMoviesSortFunc from '../controllers/setMoviesSortFunc'
 import type { MovieInfo } from '../controllers/slice'
+import 'swiper/css'
+import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
+
 
 const MovieListContainer = styled.div`
   width: 100%;
@@ -11,15 +14,60 @@ const MovieListContainer = styled.div`
   h3 {
     font-size: 1.7em;
     margin: 0 0 20px;
+    a::after {
+      content: 'View all';
+      font-size: 0.6em;
+      margin: 0 10px;
+      color: #07d4a8b7;
+      letter-spacing: 0.04em;
+    }
   }
   ul {
     width: 100%;
     overflow: hidden;
     display: flex;
+    justify-content: flex-start;
     li {
       display: flex;
       flex-wrap: wrap;
-      img {                                                                                                                                                                   
+      img {                  
+        min-height: 278px;
+      }
+      p {
+        max-width: 185px;
+        letter-spacing: -0.04em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0 3px;
+      }
+      span {
+        font-size: 0.8em;
+      }
+    }
+  }
+  .swiper {
+    &-wrapper,
+    &-container {
+      width: 100%;
+      margin: 0;
+    }
+    &-slide {
+      flex: 1;
+      img {                  
+        min-height: 278px;
+      }
+      p {
+        max-width: 185px;
+        letter-spacing: -0.04em;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 0 3px;
+        box-sizing: border-box;
+      }
+      span {
+        font-size: 0.8em;
       }
     }
   }
@@ -45,23 +93,29 @@ const MovieList = ({ kind, title }: Props) => {
     movieList = []
   }
 
-  
+  const setting: SwiperProps = {
+    slidesPerView: "auto",
+  }
+
   return (
     <MovieListContainer>
       <h3>
-        <Link to={kind==='dailyBoxOffice'?'/':'pages/sub/GridList'} state={kind}>{title}</Link>
+        <Link to={kind==='dailyBoxOffice'?'pages/sub/BoxOffice':'pages/sub/GridList'} state={kind}>{title}</Link>
       </h3>
-      <ul>
-        {movieList?.map((movie: MovieInfo, i: number) => (
-          <li key={i}>
-            <Link to={'pages/sub/Detail'} state={movieList[i]}>
+      <Swiper {...setting}>
+        {movieList?.slice(0, 10).map((movie: MovieInfo, i: number) => (
+          <SwiperSlide key={i}>
+            <Link to={'pages/sub/Detail'} state={movie}>
               {movie?.poster_path && <img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`} />}
               <p>{movie?.title}</p>
-              <span>{kind==='dailyBoxOffice'?i+1+'위':movie[kind as keyof MovieInfo]}</span>
+              <span>{
+              kind==='dailyBoxOffice'?i+1+'위':
+              kind==='popularity'?Math.floor(movie[kind as keyof MovieInfo] as number)+'점':movie[kind as keyof MovieInfo]
+              }</span>
             </Link>
-          </li>
+          </SwiperSlide>
         ))}
-      </ul>
+      </Swiper>
     </MovieListContainer>
   )
 }

@@ -53,7 +53,7 @@ const OverviewSection = styled.div`
       width: 70px;
       margin: 10px 0 0;
       height: 3px;
-      background: #c50909;
+      background: #07d4a8b7;
     }
   }
 
