@@ -11,6 +11,7 @@ import searchFunc from "../../controllers/searchFunc"
 
 const GridListContainer = styled.div`
   padding: 100px 0 0;
+  min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
