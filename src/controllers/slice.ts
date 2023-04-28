@@ -104,8 +104,6 @@ const moviesDataSlice = createSlice({
 
       //boxOffice만 따로 별개의 state로 관리
       const dailyUpdate = action.payload[0]?.results
-      console.log(action.payload[0])
-      console.log(action.payload[1])
       const weeklyUpdate = action.payload[1]?.results
       state.moviesData.dailyBoxOffice = dailyUpdate
       state.moviesData.weeklyBoxOffice = weeklyUpdate

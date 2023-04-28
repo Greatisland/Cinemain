@@ -7,7 +7,8 @@ import { useLocation } from "react-router-dom"
 const DetailContainer = styled.div`
   display: flex;
   margin: 0 auto;
-  padding: 100px 50px;
+  flex-wrap: wrap;
+  padding: 100px 0 0;
   gap: 40px;
   justify-content: center;
 `

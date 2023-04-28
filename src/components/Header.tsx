@@ -7,6 +7,7 @@ import { searchState } from "../controllers/slice"
 const HeaderContainer = styled.div`
   width: 100%;
   position: fixed;
+  z-index: 10;
   top: 0; left: 0;
   height: 100px;
   box-sizing: border-box;
@@ -29,8 +30,8 @@ const HeaderContainer = styled.div`
       box-sizing: border-box;
       background: #000;
       border-radius: 30px;
+      border: 2px solid #ccc;
       color: #fff;
-      border: none;
       transition: 0.7s;
       :hover {
         width: 300px;
