@@ -48,7 +48,7 @@ const BoxOfficeListCon = styled.div`
       bottom: 0px;
     }
 
-    :hover::after{
+    :hover::after {
       content: '';
       display: block;
       width: 100%;
@@ -82,7 +82,6 @@ interface Props {
 
 const BoxOfficeList = ({kind}: Props) => {
   const { dailyBoxOffice, weeklyBoxOffice } = useAppSelector(state => state.moviesData.moviesData)
-  console.log(weeklyBoxOffice)
   return (
     <BoxOfficeListCon>
       <h3>{kind==='daily'?'일일':'주간'} 박스오피스 순위</h3>

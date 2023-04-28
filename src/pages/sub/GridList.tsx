@@ -10,7 +10,7 @@ import type { MovieInfo } from "../../controllers/slice"
 import searchFunc from "../../controllers/searchFunc"
 
 const GridListContainer = styled.div`
-  padding: 100px 0;
+  padding: 100px 0 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
