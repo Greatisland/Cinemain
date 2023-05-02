@@ -32,6 +32,7 @@ export const getMoviesData = createAsyncThunk("movies/getMoviesData", async () =
   //konfig api의 json data는 getMoviesConversion를 통해 tmdb api와 같은 형식으로 변환
   data[0] = await getMoviesConversion(jsonData[0]?.boxOfficeResult?.dailyBoxOfficeList)
   data[1] = await getMoviesConversion(jsonData[1]?.boxOfficeResult?.weeklyBoxOfficeList)
+
   return data
 })
 

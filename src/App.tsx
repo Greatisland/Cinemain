@@ -21,7 +21,7 @@ const App = () => {
   return (
    <>
     <GlobalStyle />
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       {/* ScrollToTop = 페이지 이동 시 스크롤 초기화 */}
       <ScrollToTop />
       <Routes>
