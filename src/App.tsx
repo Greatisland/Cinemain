@@ -25,7 +25,7 @@ const App = () => {
       {/* ScrollToTop = 페이지 이동 시 스크롤 초기화 */}
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/*" element={<Main />} />
         <Route path="/pages/sub" element={<SubPages children />} />
         <Route path="/pages/sub/Detail" element={<Detail />} />
         <Route path="/pages/sub/GridList" element={<GridList />} />

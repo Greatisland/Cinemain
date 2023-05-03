@@ -8,6 +8,7 @@ const BoxOfficeListCon = styled.div`
   flex-direction: column;
   gap: 20px;
   flex: 1;
+  min-width: 300px;
   h3 {
     display: flex;
     align-items: center;

@@ -12,6 +12,7 @@ const HeaderContainer = styled.div`
   height: 100px;
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 50px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0));
@@ -24,6 +25,10 @@ const HeaderContainer = styled.div`
     height: 100px;
     display: flex;
     align-items: center;
+    @media screen and (max-width: 640px) {
+        width: 100%;
+        height: auto;
+    }
     input {
       width: 100px;
       padding: 10px 20px;
@@ -35,9 +40,15 @@ const HeaderContainer = styled.div`
       transition: 0.7s;
       :hover {
         width: 300px;
+        @media screen and (max-width: 640px) {
+          width: 100%;
+        }
       }
       :focus {
         width: 300px;
+        @media screen and (max-width: 640px) {
+          width: 100%;
+        }
       }
     }
   }

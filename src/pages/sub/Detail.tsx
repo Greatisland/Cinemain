@@ -17,8 +17,10 @@ const InfoSection = styled.div`
   display: flex;
   flex: 1;
   max-width: 700px;
+  min-width: 300px;
   flex-direction: column;
   justify-content: center;
+  padding: 0 20px;
   section {
     display: flex;
     width: 100%;
@@ -98,8 +100,8 @@ const Detail = () => {
           <p>{location.state.overview}</p>
           <strong>장르</strong>
           <ul>
-          {location.state?.genre_ids?.map((genre: number) => (
-            <li>{genres[genre]}</li>
+          {location.state?.genre_ids?.map((genre: number, i: number) => (
+            <li key={i}>{genres[genre]}</li>
           ))}
           </ul>
         </OverviewSection>     
