@@ -11,6 +11,9 @@ const DetailContainer = styled.div`
   padding: 100px 0 0;
   gap: 40px;
   justify-content: center;
+  img {
+    max-width: 100%;
+  }
 `
 
 const InfoSection = styled.div`

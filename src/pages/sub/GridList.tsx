@@ -43,6 +43,7 @@ const CardMovie = styled.div`
 
 const FilterButtonContainer = styled.div`
   width: 100%;
+  height: 33px;
   display: flex;
   justify-content: center;
   gap: 50px;
