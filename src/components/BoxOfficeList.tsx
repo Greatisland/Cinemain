@@ -60,6 +60,10 @@ const BoxOfficeListCon = styled.div`
     }
     .title {
       font-size: 1.2em;
+      padding: 0 20px;
+      @media screen and (max-width: 640px) {
+        font-size: 1em;
+      }
     }
     p span {
       color: #07d4a8;

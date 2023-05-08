@@ -25,7 +25,7 @@ const MovieListContainer = styled.div`
       letter-spacing: 0.04em;
     }
   }
-  ul {
+  /* ul {
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -48,7 +48,7 @@ const MovieListContainer = styled.div`
         font-size: 0.8em;
       }
     }
-  }
+  } */
   .swiper {
     &-wrapper,
     &-container {
@@ -59,9 +59,16 @@ const MovieListContainer = styled.div`
       flex: 1;
       img {                  
         min-height: 278px;
+        @media screen and (max-width: 640px) {
+          min-height: auto;
+          max-width: 125px;
+        }
       }
       p {
         max-width: 185px;
+        @media screen and (max-width: 640px) {
+          max-width: 125px;
+        }
         letter-spacing: -0.04em;
         text-overflow: ellipsis;
         white-space: nowrap;

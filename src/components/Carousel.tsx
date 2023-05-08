@@ -23,6 +23,9 @@ const CarouselContainer = styled.div<CarouselContainerProps>`
 
   h3 {
     font-size: 4em;
+    @media screen and (max-width: 640px) {
+      font-size: 3em;
+    }
   }
   a {
     background: #fff;
