@@ -1,4 +1,4 @@
-CINEMAIN 
+CINEMAIN ( https://greatisland.github.io/cinemain )
 영화 정보 Web application
 
 참여자 : 김현진 (단독 프로젝트)
