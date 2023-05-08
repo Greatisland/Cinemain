@@ -9,7 +9,10 @@ import { Swiper, SwiperSlide, SwiperProps } from 'swiper/react'
 
 const MovieListContainer = styled.div`
   width: 100%;
-  padding: 0 50px; 
+  padding: 0 50px;
+  @media screen and (max-width: 640px) {
+    padding: 0 20px;
+  }
   box-sizing: border-box;
   h3 {
     font-size: 1.7em;

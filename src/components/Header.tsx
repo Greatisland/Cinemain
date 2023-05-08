@@ -13,9 +13,11 @@ const HeaderContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: space-between;
   padding: 0 50px;
+  @media screen and (max-width: 640px) {
+    padding: 0 20px;
+  }
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0));
   h1 {
     line-height: 70px;

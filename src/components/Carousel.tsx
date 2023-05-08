@@ -16,6 +16,9 @@ const CarouselContainer = styled.div<CarouselContainerProps>`
   align-items: flex-start;
   gap: 10px;
   padding: 0 50px;
+  @media screen and (max-width: 640px) {
+    padding: 0 20px;
+  }
   box-sizing: border-box;
 
   h3 {

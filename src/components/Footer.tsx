@@ -5,6 +5,9 @@ const FooterContainer = styled.div`
   height: 70px;
   background: #000;
   padding: 30px 50px;
+  @media screen and (max-width: 640px) {
+    padding: 30px 20px;
+  }
   box-sizing: border-box;
   p {
     font-size: 0.7em;

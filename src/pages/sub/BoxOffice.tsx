@@ -5,6 +5,9 @@ import BoxOfficeList from "../../components/BoxOfficeList"
 
 const BoxOfficeContainer = styled.div`
   padding: 100px 50px 0;
+  @media screen and (max-width: 640px) {
+    padding: 100px 20px 0;
+  }
   display: flex;
   flex-wrap: wrap;
   gap: 100px;
