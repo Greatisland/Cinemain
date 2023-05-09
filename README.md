@@ -55,7 +55,7 @@ MVI(Model-View-Intent)모델에 맞춰 컴포넌트-페이지-로직을 분리�
 반응형 구현으로 웹 - 모바일 디바이스간 UI/UX를 분리할 수 있다.
 
 
-[TypeScript]: https://img.shields.io/badge/typescript-F7DF1E?style=for-the-badge&logo=typescript&logoColor=blue
+[TypeScript]: https://img.shields.io/badge/TypeScript-#3178C6?style=for-the-badge&logo=TypeScript&logoColor=blue
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
