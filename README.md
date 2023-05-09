@@ -20,12 +20,11 @@
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
 <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
+<img src="https://img.shields.io/badge/Redux Toolkit-20232A?style=for-the-badge&logo=redux&logoColor=61DAFB">
+<img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
+<img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
+<img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
 
-React-Router
-라우팅 기능과 페이지 간 props 전달을 위해 사용
-
-Redux-toolkit
-React의 컴포넌트 상태관리 및 API로 불러온 영화DB들을 저장하는 데 필요함으로 선택
 
 Styled-Components
 CSS in JS로 능동적인 CSS 작성 가능함으로 선택
