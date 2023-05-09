@@ -18,7 +18,7 @@
 
 ### 사용된 스택
 [![React][React.js]][React-url]<br>
-* 웹 앱의 뼈대가 되는 프레임워크로 컴포넌트 구조화 및 재사용 증대
+[![TypeScript][TypeScript]][TypeScript-url]<br>
 TypeScript
 JS의 슈퍼셋으로 타입 검증을 통해 더욱 안정성 있는 디버깅이 가능함으로 선택
 
@@ -55,6 +55,7 @@ MVI(Model-View-Intent)모델에 맞춰 컴포넌트-페이지-로직을 분리�
 반응형 구현으로 웹 - 모바일 디바이스간 UI/UX를 분리할 수 있다.
 
 
+[TypeScript]: https://img.shields.io/badge/typescript-F7DF1E?style=for-the-badge&logo=typescript&logoColor=blue
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
