@@ -1,5 +1,5 @@
 <div align="center">
-  <h3 align="center">CINEMAIN</h3>
+  <h1 align="center">CINEMAIN</h3>
 
   <p align="center">
     영화 정보를 서치하고 확인하는 Web application
@@ -8,20 +8,28 @@
   </p>
 </div>
 
-CINEMAIN ( https://greatisland.github.io/cinemain )
-영화 정보 Web application
+## 프로젝트에 대해
 
 참여자 : 김현진 (단독 프로젝트)
 제작 기간 : 약 2주
 
 현재 상영중인 영화 및 기타 영화들의 정보들을 다양한 지표를 바탕으로 확인할 수 있는 반응형 웹 어플리케이션 입니다.
 
-사용된 스택
+
+### 사용된 스택
+* [![React][React.js]][React-url]
+웹 앱의 뼈대가 되는 프레임워크로 컴포넌트 구조화 및 재사용 증대
+* 
+* [![Vue][Vue.js]][Vue-url]
+* [![Angular][Angular.io]][Angular-url]
+* [![Svelte][Svelte.dev]][Svelte-url]
+* [![Laravel][Laravel.com]][Laravel-url]
+* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+* [![JQuery][JQuery.com]][JQuery-url]
 TypeScript
 JS의 슈퍼셋으로 타입 검증을 통해 더욱 안정성 있는 디버깅이 가능함으로 선택
 
 React
-웹 앱의 뼈대가 되는 프레임워크로 컴포넌트 구조화 및 재사용 증대
 
 React-Router
 라우팅 기능과 페이지 간 props 전달을 위해 사용
