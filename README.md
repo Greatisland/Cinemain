@@ -17,7 +17,7 @@
 
 
 ### 사용된 스택
-* [![React][React.js]][React-url]
+* <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
 웹 앱의 뼈대가 되는 프레임워크로 컴포넌트 구조화 및 재사용 증대
 * 
 * [![Vue][Vue.js]][Vue-url]
