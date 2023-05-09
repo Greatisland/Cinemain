@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/Redux Toolkit-20232A?style=for-the-badge&logo=redux&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 <img src="https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=reactrouter&logoColor=white">
-<br /><br /><br />
+<br /><br />
 
 ### 구현 목표
 - [x] 영화 정보를 fetch 함수를 이용해 REST API 통신으로 받아올 수 있다
