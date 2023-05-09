@@ -18,7 +18,8 @@
 
 ### 사용된 스택
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
-[![React][React.js]][React-url]
+* [![React][React.js]][React-url]
+* [![React][React.js]][React-url]
 웹 앱의 뼈대가 되는 프레임워크로 컴포넌트 구조화 및 재사용 증대
 TypeScript
 JS의 슈퍼셋으로 타입 검증을 통해 더욱 안정성 있는 디버깅이 가능함으로 선택
