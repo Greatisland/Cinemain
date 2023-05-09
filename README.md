@@ -22,18 +22,7 @@
 <img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Redux Toolkit-20232A?style=for-the-badge&logo=redux&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
-<img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
-<img src="https://img.shields.io/badge/React Router-20232A?style=for-the-badge&logo=reactrouter&logoColor=61DAFB">
-
-
-Styled-Components
-CSS in JS로 능동적인 CSS 작성 가능함으로 선택
-
-REST API
-영화진흥위원회(www.kobis.or.kr) 및 TMDB(www.themoviedb.org)의 공공 API를 사용하여 영화 DB를 받아오는 데 사용.
-
-Swiper
-슬라이드 라이브러리로 빠르게 영화 컴포넌트의 슬라이드를 구현하기 위해 선택
+<img src="https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=reactrouter&logoColor=white">
 
 
 구현 목표
