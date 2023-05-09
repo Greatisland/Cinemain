@@ -14,7 +14,7 @@
 제작 기간 : 약 2주
 
 현재 상영중인 영화 및 기타 영화들의 정보들을 다양한 지표를 바탕으로 확인할 수 있는 반응형 웹 어플리케이션 입니다.
-
+<br /><br />
 
 ### 사용된 스택
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/Redux Toolkit-20232A?style=for-the-badge&logo=redux&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 <img src="https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=reactrouter&logoColor=white">
-
+<br /><br />
 
 구현 목표
 
