@@ -24,6 +24,7 @@
 <img src="https://img.shields.io/badge/Redux Toolkit-20232A?style=for-the-badge&logo=redux&logoColor=61DAFB">
 <img src="https://img.shields.io/badge/Styled Components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
 <img src="https://img.shields.io/badge/Swiper-6332F6?style=for-the-badge&logo=reactrouter&logoColor=white">
+<img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=reactrouter&logoColor=white">
 <br /><br />
 
 ## 구현 목표
