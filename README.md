@@ -1,3 +1,13 @@
+<div align="center">
+  <h3 align="center">CINEMAIN</h3>
+
+  <p align="center">
+    영화 정보를 서치하고 확인하는 Web application
+    <br />
+    <a href="https://greatisland.github.io/cinemain"><strong>배포: Github Pages</strong></a>
+  </p>
+</div>
+
 CINEMAIN ( https://greatisland.github.io/cinemain )
 영화 정보 Web application
 
